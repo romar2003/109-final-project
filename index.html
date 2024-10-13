@@ -11,13 +11,53 @@
         <nav>
             <h1>Corn Products</h1>
             <ul>
+                <li><a href="#carousel">Home</a></li>
                 <li><a href="#products">Products</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#contact">Contact Us</a></li>
                 <li><a href="#cart">Cart</a></li>
                 <li><a href="#login">Login</a></li>
             </ul>
         </nav>
     </header>
 
+    <!-- Carousel Section -->
+    <section id="carousel" class="carousel-section">
+        <div class="carousel">
+            <div class="carousel-slide active">
+                <img src="images/flour.jfif" alt="Corn Flour">
+                <div class="carousel-caption">
+                    <h2>Corn Flour</h2>
+                    <p>Premium quality corn flour for all your baking needs.</p>
+                </div>
+            </div>
+            <div class="carousel-slide">
+                <img src="images/Popcorn.jfif" alt="Popcorn Kernels">
+                <div class="carousel-caption">
+                    <h2>Popcorn Kernels</h2>
+                    <p>Organic popcorn kernels, ready for a movie night.</p>
+                </div>
+            </div>
+            <div class="carousel-slide">
+                <img src="images/syrup.jfif" alt="Corn Syrup">
+                <div class="carousel-caption">
+                    <h2>Corn Syrup</h2>
+                    <p>High-quality corn syrup for your sweet recipes.</p>
+                </div>
+            </div>
+        </div>
+        <button class="prev" onclick="prevSlide()">&#10094;</button>
+        <button class="next" onclick="nextSlide()">&#10095;</button>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="about-section">
+        <h2>About Us</h2>
+        <p>At Corn E-Commerce, we are passionate about delivering the finest corn products to your doorstep. From corn flour to popcorn kernels and everything in between, we ensure that our products are sourced from the best farms to give you high-quality and organic options for your home and kitchen.</p>
+        <p>Our mission is to make every meal and snack more delicious, healthy, and sustainable with the best corn-based products.</p>
+    </section>
+
+    <!-- Products Section -->
     <section id="products" class="products-section">
         <h2>Our Corn Products</h2>
         <div class="product-list">
@@ -25,6 +65,24 @@
         </div>
     </section>
 
+    <!-- Contact Us Section -->
+    <section id="contact" class="contact-section">
+        <h2>Contact Us</h2>
+        <form id="contact-form">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+            
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+    <!-- Cart Section -->
     <section id="cart" class="cart-section">
         <h2>Your Cart</h2>
         <div class="cart-items">
@@ -33,6 +91,7 @@
         <button id="checkout-btn">Checkout</button>
     </section>
 
+    <!-- Login Section -->
     <section id="login" class="login-section">
         <h2>Login</h2>
         <form id="login-form">

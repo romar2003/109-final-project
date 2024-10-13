@@ -8,7 +8,39 @@ const products = [
 let cart = [];
 let loggedIn = false;
 
-// Display products on the page
+// CAROUSEL LOGIC
+let currentSlide = 0;
+const slides = document.querySelectorAll('.carousel-slide');
+
+// Show a specific slide
+function showSlide(index) {
+    slides.forEach((slide, i) => {
+        slide.classList.remove('active');
+        if (i === index) {
+            slide.classList.add('active');
+        }
+    });
+}
+
+// Show the next slide
+function nextSlide() {
+    currentSlide = (currentSlide + 1) % slides.length;
+    showSlide(currentSlide);
+}
+
+// Show the previous slide
+function prevSlide() {
+    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+    showSlide(currentSlide);
+}
+
+// Auto-slide every 5 seconds
+setInterval(nextSlide, 5000);
+
+// Initial display of first slide
+showSlide(currentSlide);
+
+// PRODUCT LISTING
 const productContainer = document.querySelector('.product-list');
 products.forEach(product => {
     const productEl = document.createElement('div');
@@ -21,7 +53,7 @@ products.forEach(product => {
     productContainer.appendChild(productEl);
 });
 
-// Add product to cart
+// CART MANAGEMENT
 function addToCart(productId) {
     const product = products.find(p => p.id === productId);
     const cartItem = cart.find(item => item.id === productId);
@@ -36,16 +68,23 @@ function addToCart(productId) {
 // Update cart display
 function updateCart() {
     const cartContainer = document.querySelector('.cart-items');
-    cartContainer.innerHTML = '';
+    cartContainer.innerHTML = ''; // Clear previous content
     cart.forEach(item => {
         cartContainer.innerHTML += `
             <div class="cart-item">
                 <h4>${item.name}</h4>
                 <p>Quantity: ${item.quantity}</p>
                 <p>Total: $${(item.price * item.quantity).toFixed(2)}</p>
+                <button onclick="removeFromCart(${item.id})">Remove</button>
             </div>
         `;
     });
+}
+
+// Remove item from cart
+function removeFromCart(productId) {
+    cart = cart.filter(item => item.id !== productId);
+    updateCart();
 }
 
 // Checkout functionality
@@ -54,10 +93,16 @@ document.getElementById('checkout-btn').addEventListener('click', () => {
         alert('Please log in first!');
         return;
     }
-    alert('Checkout successful!');
+    if (cart.length === 0) {
+        alert('Your cart is empty!');
+    } else {
+        alert('Checkout successful!');
+        cart = [];
+        updateCart();
+    }
 });
 
-// Simple login system
+// LOGIN SYSTEM
 document.getElementById('login-form').addEventListener('submit', (e) => {
     e.preventDefault();
     const email = document.getElementById('email').value;
@@ -68,4 +113,13 @@ document.getElementById('login-form').addEventListener('submit', (e) => {
     } else {
         document.getElementById('login-status').innerText = 'Invalid credentials.';
     }
+});
+
+// CONTACT FORM SUBMISSION
+document.getElementById('contact-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const message = document.getElementById('message').value;
+    alert(`Message sent by ${name} (${email}):\n\n${message}`);
 });
