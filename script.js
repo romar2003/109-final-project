@@ -23,42 +23,42 @@ function showSlide(index) {
 }
 
 // Show the next slide
-const slides = document.querySelectorAll('.slide');
-let index = 0;
+function prevSlide() {
+    slides[currentSlide].classList.remove('active');
+    currentSlide--;
 
-function prevSlide(){
-    slides[index].classList.remove('active');
-    index--;
+    if (currentSlide < 0) {
+        currentSlide = slides.length - 1;
+    }
 
-    if(index < 0)
-        index = slides.length -1;
-
-    slides[index].classList.add('active');      
+    slides[currentSlide].classList.add('active');
 }
 
-document.querySelector('.prev').addEventListener('click', e => {
+document.querySelector('.prev').addEventListener('click', () => {
     prevSlide();
 });
 
-function nextSlide(){
-    slides[index].classList.remove('active');
-    index++;
+function nextSlide() {
+    slides[currentSlide].classList.remove('active');
+    currentSlide++;
 
-    if(index > slides.length -1)
-        index = 0;
+    if (currentSlide > slides.length - 1) {
+        currentSlide = 0;
+    }
 
-    slides[index].classList.add('active');      
+    slides[currentSlide].classList.add('active');
 }
 
-document.querySelector('.next').addEventListener('click', e => {
+document.querySelector('.next').addEventListener('click', () => {
     nextSlide();
 });
 
 // Auto-slide every 5 seconds
 setInterval(nextSlide, 5000);
 
-// Initial display of first slide
+// Initial display of the first slide
 showSlide(currentSlide);
+
 
 // PRODUCT LISTING
 const productContainer = document.querySelector('.product-list');
