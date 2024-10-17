@@ -8,58 +8,6 @@ const products = [
 let cart = [];
 let loggedIn = false;
 
-// CAROUSEL LOGIC
-let currentSlide = 0;
-const slides = document.querySelectorAll('.carousel-slide');
-
-// Show a specific slide
-function showSlide(index) {
-    slides.forEach((slide, i) => {
-        slide.classList.remove('active');
-        if (i === index) {
-            slide.classList.add('active');
-        }
-    });
-}
-
-// Show the next slide
-function prevSlide() {
-    slides[currentSlide].classList.remove('active');
-    currentSlide--;
-
-    if (currentSlide < 0) {
-        currentSlide = slides.length - 1;
-    }
-
-    slides[currentSlide].classList.add('active');
-}
-
-document.querySelector('.prev').addEventListener('click', () => {
-    prevSlide();
-});
-
-function nextSlide() {
-    slides[currentSlide].classList.remove('active');
-    currentSlide++;
-
-    if (currentSlide > slides.length - 1) {
-        currentSlide = 0;
-    }
-
-    slides[currentSlide].classList.add('active');
-}
-
-document.querySelector('.next').addEventListener('click', () => {
-    nextSlide();
-});
-
-// Auto-slide every 5 seconds
-setInterval(nextSlide, 5000);
-
-// Initial display of the first slide
-showSlide(currentSlide);
-
-
 // PRODUCT LISTING
 const productContainer = document.querySelector('.product-list');
 products.forEach(product => {
